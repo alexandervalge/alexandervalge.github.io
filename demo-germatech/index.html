@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Germatech – PLC-verktyg för Siemens S5 och S7</title>
+<meta name="description" content="Verktyg för programmering, felsökning och kommunikation med PLC-system. Germatech AB i Jörlanda, sedan 1990.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;
+  --steel:#eef0f2;
+  --line:#d5d9de;
+  --graphite:#23272b;
+  --grey:#555b61;
+  --red:#c11336;
+  --red-dark:#990f2b;
+  --gutter:16px;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--graphite);font-family:"Archivo",system-ui,sans-serif;font-size:17px;line-height:1.55;font-variation-settings:"wdth" 100}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+
+/* demo banner */
+.demo{background:var(--graphite);color:#fff;font-size:13px;text-align:center;padding:6px var(--gutter)}
+
+/* header */
+.top{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:10}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.logo img{height:40px;width:auto}
+.top nav{display:flex;align-items:center;gap:6px}
+.top nav a.link{display:none;text-decoration:none;font-weight:600;padding:10px 12px;font-size:15px}
+.top nav a.link:hover{color:var(--red)}
+.call{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:15px;border-radius:2px}
+.call:hover{background:var(--red-dark)}
+.call svg{width:18px;height:18px}
+.call .num{display:none}
+
+/* hero */
+.hero{padding:36px 0 0;overflow:hidden}
+.hero-grid{display:grid;gap:24px}
+h1{font-size:clamp(40px,11vw,76px);line-height:.98;margin:0;font-weight:800;font-variation-settings:"wdth" 68;letter-spacing:-.005em;max-width:12ch}
+.lead{font-size:18px;color:var(--grey);margin:18px 0 0;max-width:40ch}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;font-weight:700;font-size:17px;text-decoration:none;border-radius:2px;border:2px solid var(--red)}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:var(--red-dark);border-color:var(--red-dark)}
+.btn.ghost{color:var(--red);background:transparent}
+.btn.ghost:hover{background:#fbeef1}
+.hero-photo{display:none}
+.trace{display:block;width:100%;height:72px;margin-top:34px}
+.trace path,.trace line{vector-effect:non-scaling-stroke}
+.trace path{fill:none;stroke:var(--red);stroke-width:3;stroke-linejoin:miter}
+.trace .grid{stroke:var(--line);stroke-width:1}
+@media (prefers-reduced-motion:no-preference){
+  .trace path.sig{stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 1.8s .3s cubic-bezier(.4,0,.2,1) forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+
+/* sections */
+section{padding:48px 0}
+h2{font-size:clamp(30px,7vw,44px);line-height:1.05;margin:0 0 8px;font-weight:800;font-variation-settings:"wdth" 72}
+.intro{color:var(--grey);margin:0 0 24px;max-width:52ch}
+
+/* products */
+#produkter{background:var(--steel)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;list-style:none;margin:0;padding:0}
+.tile{display:flex;flex-direction:column;height:100%;background:var(--paper);text-decoration:none;border:1px solid var(--line);border-radius:2px}
+.tile:hover{border-color:var(--red)}
+.tile:hover .name{color:var(--red)}
+.tile .pic{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;padding:8px;border-bottom:1px solid var(--line);overflow:hidden}
+.tile .pic.shot{padding:0}
+.tile .pic img{max-height:100%;width:auto;object-fit:contain}
+.tile .pic.shot img{width:100%;height:100%;object-fit:cover;object-position:left top}
+.tile .txt{padding:10px 12px 12px}
+.tile .name{font-weight:700;font-size:16px;line-height:1.2;font-variation-settings:"wdth" 88;display:block}
+.tile .sub{font-size:13.5px;color:var(--grey);display:block;margin-top:3px;line-height:1.35}
+.shoplink{margin-top:18px;display:inline-block;font-weight:700;color:var(--red)}
+
+/* why */
+.facts{display:grid;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.facts li{padding:16px 0;border-bottom:1px solid var(--line)}
+.facts strong{display:block;font-size:19px;font-variation-settings:"wdth" 88}
+.facts span{color:var(--grey);font-size:16px}
+.order{margin-top:24px;background:var(--graphite);color:#fff;padding:20px;border-left:6px solid var(--red)}
+.order strong{display:block;font-size:22px;line-height:1.2;font-variation-settings:"wdth" 80}
+.order p{margin:6px 0 0;color:#d3d7db;font-size:16px}
+
+/* news */
+#nyheter{border-top:1px solid var(--line)}
+.news{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.news li{border:1px solid var(--line);border-radius:2px;display:grid;grid-template-columns:84px 1fr;gap:14px;padding:14px;align-items:start}
+.news li.noimg{grid-template-columns:1fr}
+.news img{width:84px;height:110px;object-fit:contain}
+.news time{font-size:14px;color:var(--grey)}
+.news h3{margin:2px 0 4px;font-size:19px;line-height:1.2;font-variation-settings:"wdth" 88}
+.news p{margin:0;font-size:16px}
+.news a{font-weight:600;color:var(--red);font-size:15px;display:inline-block;margin-top:6px}
+
+/* contact */
+#kontakt{background:var(--graphite);color:#fff}
+#kontakt h2{color:#fff}
+#kontakt .intro{color:#c3c8cd}
+.cards{display:grid;gap:10px}
+.c{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid #454b52;border-radius:2px;text-decoration:none;color:#fff;min-height:64px}
+a.c:hover{border-color:#fff}
+.c svg{width:24px;height:24px;flex:none;color:#ff6b86}
+.c small{display:block;color:#aeb4ba;font-size:13.5px}
+.c b{font-size:19px;font-weight:700;word-break:break-word}
+.org{margin:18px 0 0;color:#aeb4ba;font-size:14px}
+footer{background:#1a1d20;color:#aeb4ba;font-size:13.5px;padding:18px 0}
+
+@media (min-width:640px){
+  .tiles{grid-template-columns:repeat(3,1fr);gap:14px}
+  .cards{grid-template-columns:repeat(3,1fr)}
+  .facts{grid-template-columns:1fr 1fr;column-gap:32px;border-top:0}
+  .facts li:nth-child(-n+2){border-top:1px solid var(--line)}
+}
+@media (min-width:900px){
+  :root{--gutter:32px}
+  .top nav a.link{display:inline-block}
+  .call .num{display:inline}
+  .call .lbl{display:none}
+  .hero{padding-top:64px}
+  .hero-grid{grid-template-columns:1.4fr 1fr;align-items:end}
+  .hero-photo{display:block;justify-self:center}
+  .hero-photo img{height:380px;width:auto}
+  .lead{font-size:20px}
+  section{padding:72px 0}
+  .why-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start}
+  .news{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="demo">Förslag från Alexander Valge – inte publicerad</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="https://www.germatech.se/"><img src="img/gLOGO_small.jpg" alt="Germatech" width="287" height="70"></a>
+    <nav aria-label="Huvudmeny">
+      <a class="link" href="#produkter">Produkter</a>
+      <a class="link" href="#nyheter">Nyheter</a>
+      <a class="link" href="#kontakt">Kontakt</a>
+      <a class="link" href="https://www.germatech.se/index.php?route=checkout/cart">Varukorg</a>
+      <a class="call" href="tel:+4636346010" aria-label="Ring 036-34 60 10">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+        <span class="lbl">Ring</span><span class="num">036-34 60 10</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1 id="h1">PLC-verktyg för Siemens S5 och S7</h1>
+        <p class="lead">Programmering, felsökning och kommunikation – även TIA-Portal, Mitsubishi, Rockwell, Modbus med flera. Sedan 1990.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#produkter">Se produkter</a>
+          <a class="btn ghost" href="tel:+4636346010">Ring oss</a>
+        </div>
+      </div>
+      <div class="hero-photo"><img src="img/LinkUA_ml.png" alt="IBH Link UA, OPC UA-server/klient för DIN-skena" width="314" height="543"></div>
+    </div>
+  </div>
+  <svg class="trace" viewBox="0 0 1200 72" preserveAspectRatio="none" aria-hidden="true">
+    <line class="grid" x1="0" y1="60" x2="1200" y2="60"/>
+    <path class="sig" d="M0 60H90V14H170V60H230V14H250V60H330V14H450V60H490V14H530V60H640V14H700V60H720V14H740V60H860V14H930V60H990V14H1100V60H1200"/>
+  </svg>
+</section>
+
+<section id="produkter" aria-labelledby="h-prod">
+  <div class="wrap">
+    <h2 id="h-prod">Produkter</h2>
+    <p class="intro">Välj en kategori så kommer du direkt till rätt del av webbutiken.</p>
+    <ul class="tiles">
+      <li><a class="tile" href="https://www.germatech.se/index.php?route=product/category&amp;path=73_82">
+        <span class="pic"><img src="img/IBH_Link_plus_plus_001.png" alt="" loading="lazy"></span>
+        <span class="txt"><span class="name">S7-gränssnitt</span><span class="sub">IBH Link S7++ med flera</span></span></a></li>
+      <li><a class="tile" href="https://www.germatech.se/index.php?route=product/category&amp;path=73_80">
+        <span class="pic"><img src="img/IBH_Link_S5_plus_plus_small.png" alt="" loading="lazy"></span>
+        <span class="txt"><span class="name">S5-gränssnitt</span><span class="sub">IBH Link S5++, adaptrar</span></span></a></li>
+      <li><a class="tile" href="https://www.germatech.se/index.php?route=product/category&amp;path=74_87">
+        <span class="pic shot"><img src="img/spsap6.png" alt="" loading="lazy"></span>
+        <span class="txt"><span class="name">PLC Analyser Pro</span><span class="sub">Logga och analysera signaler</span></span></a></li>
+      <li><a class="tile" href="https://www.germatech.se/index.php?route=product/category&amp;path=74_75">
+        <span class="pic shot"><img src="img/drivers.png" alt="" loading="lazy"></span>
+        <span class="txt"><span class="name">Drivrutiner</span><span class="sub">För PLC Analyser Pro, 20 st</span></span></a></li>
+      <li><a class="tile" href="https://www.germatech.se/index.php?route=product/category&amp;path=74_77">
+        <span class="pic shot"><img src="img/Osci_eng_small.png" alt="" loading="lazy"></span>
+        <span class="txt"><span class="name">S5S7 för Windows</span><span class="sub">Programmera S5 och S7</span></span></a></li>
+      <li><a class="tile" href="https://www.germatech.se/index.php?route=product/category&amp;path=74_78">
+        <span class="pic shot"><img src="img/OPCUA.png" alt="" loading="lazy"></span>
+        <span class="txt"><span class="name">OPC-server</span><span class="sub">OPC UA server och klient</span></span></a></li>
+    </ul>
+    <a class="shoplink" href="https://www.germatech.se/">Hela webbutiken, även Soft-PLC och demoversioner</a>
+  </div>
+</section>
+
+<section id="varfor" aria-labelledby="h-why">
+  <div class="wrap why-grid">
+    <div>
+      <h2 id="h-why">Varför Germatech</h2>
+      <p class="intro">Ett litet bolag med lång erfarenhet av PLC-system.</p>
+    </div>
+    <div>
+      <ul class="facts">
+        <li><strong>Sedan 1990</strong><span>Över 35 år med verktyg för PLC-system.</span></li>
+        <li><strong>Siemens S5 och S7</strong><span>Både äldre S5-anläggningar och S7 med TIA-Portal.</span></li>
+        <li><strong>Många system</strong><span>Även Mitsubishi, Rockwell, Modbus, SIMOTION, CoDeSys och GE-Fanuc CNC.</span></li>
+        <li><strong>IBH och PLC-Analyzer pro</strong><span>Gränssnitt från IBH softec och analysverktyget PLC-Analyzer pro 6.</span></li>
+      </ul>
+      <div class="order">
+        <strong>Beställ utan konto – betala mot faktura</strong>
+        <p>Lägg ordern direkt i webbutiken. Du behöver inget konto och betalar mot faktura.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nyheter" aria-labelledby="h-news">
+  <div class="wrap">
+    <h2 id="h-news">Nyheter</h2>
+    <ul class="news">
+      <li>
+        <img src="img/LinkUA_ml.png" alt="" loading="lazy">
+        <div>
+          <time datetime="2025-01-28">28 januari 2025</time>
+          <h3>IBH Link UA Quad Core med 64 bit</h3>
+          <p>En ny version med 64 bit-processor och 4 GB RAM finns nu för leverans.</p>
+          <a href="https://www.germatech.se/index.php?route=information/news/news&amp;news_id=55">Läs nyheten</a>
+        </div>
+      </li>
+      <li class="noimg">
+        <div>
+          <time datetime="2025-05-05">5 maj 2025</time>
+          <h3>Priserna omräknade</h3>
+          <p>Våra priser är nu omräknade efter den starkare kronan.</p>
+          <a href="https://www.germatech.se/index.php?route=information/news">Alla nyheter</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="kontakt" aria-labelledby="h-contact">
+  <div class="wrap">
+    <h2 id="h-contact">Kontakt</h2>
+    <p class="intro">Frågor om produkter, beställningar eller support – ring eller mejla.</p>
+    <div class="cards">
+      <a class="c" href="tel:+4636346010">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+        <span><small>Telefon</small><b>036-34 60 10</b></span></a>
+      <a class="c" href="mailto:info@germatech.se">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+        <span><small>E-post</small><b>info@germatech.se</b></span></a>
+      <a class="c" href="https://www.google.com/maps/search/?api=1&amp;query=Sax%C3%A9r%C3%B6d+221%2C+444+92+J%C3%B6rlanda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span><small>Adress</small><b>Saxeröd 221, 444 92 Jörlanda</b></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Germatech AB, org.nr 556380-6529</div></footer>
+</body>
+</html>
