@@ -294,6 +294,6 @@ a.c:hover{border-color:#fff}
 @media (min-width:900px){
   .band.intro-band{padding-top:24px;padding-bottom:56px}
   .news.three{grid-template-columns:repeat(3,1fr)}
-  .news.three li{grid-template-columns:64px 1fr}
+  .news.three li:not(.noimg){grid-template-columns:64px 1fr}
   .news.three img{width:64px;height:84px}
 }
